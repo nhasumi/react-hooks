@@ -7,8 +7,12 @@ const Event = (props) => {
     const id = event.id
     
     const handledeleteEvent = () => {
-        const action = {type:'DELETE_EVENT', id}
-        dispatch(action)
+        
+        const result = window.confirm(`イベント(ID=${id})を削除しますが宜しいでしょうか？`)
+        if (result){ 
+            const action = {type:'DELETE_EVENT', id}
+            dispatch(action)
+        }
       }
 
       return (
