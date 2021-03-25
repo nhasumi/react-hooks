@@ -1,7 +1,7 @@
 import React, {useReducer, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css' 
 import reducer from '../reduces'
-
+import Event from './Event'
 
 const App = () => {
 
@@ -16,8 +16,6 @@ const App = () => {
     dispatch(action)
   }
 
-  console.log(state)
-  
   return (
     <div className="container-fluid">
       <h4>イベント作成フォーム</h4>
@@ -45,6 +43,28 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
+            { state.map((event,index) => <Event key={index} event={event} dispatch={dispatch} />)}
+
+  {/*           {
+              state.map((event,index)=>{ 
+                const id = event.id
+
+                const handledeleteEvent = () => {
+                  const action = {type:'DELETE_EVENT', id}
+                  dispatch(action)
+                }
+
+                return (
+                  <tr key={index}>
+                    <td>{event.id}</td>
+                    <td>{event.title}</td>
+                    <td>{event.body}</td>
+                    <td><button  className="btm btn-danger" onClick={handledeleteEvent}>削除</button></td>
+                  </tr>  
+                )
+              })
+            } */}
+            
           </tbody>
         </table>         
     </div>
