@@ -1,37 +1,38 @@
 import React , {useState} from 'react';
 
 
-const App = () => {
-  const [count, setCount] = useState(0)
- 
-  const increment = () => { 
-    setCount(count +1 )
+const App = (props) => {
+  /*
+  const initialState = {
+    name:'',
+    price:1000
   }
-
-  const decrement = () =>{
-    setCount(count-1)
+  const [name, setName] = useState(initialState.name)
+  const [price, setPrice] = useState(initialState.price)
+  
+  */
+  
+  const [name, setName] = useState(props.name)
+  const [price, setPrice] = useState(props.price)
+  
+  const reset = () =>{
+    setPrice(props.price)
+    setName(props.name)
   }
-
-  const incremant2 = () => {
-    setCount ((previousCount) => previousCount +1)
-  }
-  const reset = () => setCount(0)
-  const x2 = () => setCount(count*2)
-
-  return (
-    <React.Fragment>
-    <div>count : {count}</div>
-    <button onClick={increment}>+1</button>
-    <button onClick={decrement}>-1</button>
-    <button onClick={incremant2}>+1</button>
+  
+   return (
     <div>
-    <button onClick={reset}>RESET</button>
+       <p>現在の{name}は、{price}円です</p>
+       <button onClick={()=>{setPrice(price+1)}}>+1</button>
+       <button onClick={()=>{setPrice(price-1)}}>-1</button>
+       <button onClick={reset}>REST</button>
+       <input value={name} onChange={(e)=>{setName(e.target.value)}} />
     </div>
-    <div>
-    <button onClick={x2}>x2</button>
-    </div>
-    </React.Fragment>
   );
 }
 
+App.defaultProps ={
+    name:'',
+    price:1000
+}
 export default App;
