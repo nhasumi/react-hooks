@@ -11,22 +11,15 @@ const App = (props) => {
   const [price, setPrice] = useState(initialState.price)
   
   */
-  
-  const [name, setName] = useState(props.name)
-  const [price, setPrice] = useState(props.price)
-  
-  const reset = () =>{
-    setPrice(props.price)
-    setName(props.name)
-  }
+  const[state, setState] = useState(props)
   
    return (
     <div>
-       <p>現在の{name}は、{price}円です</p>
-       <button onClick={()=>{setPrice(price+1)}}>+1</button>
-       <button onClick={()=>{setPrice(price-1)}}>-1</button>
-       <button onClick={reset}>REST</button>
-       <input value={name} onChange={(e)=>{setName(e.target.value)}} />
+       <p>現在の{state.name}は、{state.price}円です</p>
+       <button onClick={()=>{setState({...state,price:state.price+1})}}>+1</button>
+       <button onClick={()=>{setState({...state,price:state.price-1})}}>-1</button>
+       <button onClick={()=>{setState(props)}}>REST</button>
+       <input value={state.name} onChange={(e)=>{setState({...state,name:e.target.value})}} />
     </div>
   );
 }
