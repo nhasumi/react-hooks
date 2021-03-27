@@ -1,3 +1,3 @@
 
-export const timeCurrentIso8601 = ()=>(new Date()).toISOS()
+export const timeCurrentIso8601 = ()=>(new Date().toISOString())
 
